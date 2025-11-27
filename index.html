@@ -1,207 +1,841 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GreenLab - Soluciones Verdes</title>
+    <meta charset="UTF-8" />
+    <title>Green Lab | Soluciones verdes para tu espacio</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Green Lab diseña e instala soluciones de vegetación: patios y jardines con huertas, azoteas verdes, terrazas ajardinadas, jardines verticales y sistemas de riego automático." />
 
     <style>
-        body {
-            font-family: Arial, sans-serif;
+        :root {
+            --verde-oscuro: #0d3a2c;
+            --verde: #2f7f4f;
+            --verde-claro: #cde7d8;
+            --gris: #f5f5f5;
+            --gris-oscuro: #333333;
+            --blanco: #ffffff;
+            --radius-xl: 24px;
+            --shadow-soft: 0 18px 40px rgba(0, 0, 0, 0.16);
+        }
+
+        * {
+            box-sizing: border-box;
             margin: 0;
-            background: #ccd5ca; /* Fondo más oscuro */
-            color: #2b3a31;
+            padding: 0;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            background: linear-gradient(135deg, #dfe9e4, #b8d1c1); /* fondo un poco más oscuro */
+            color: var(--gris-oscuro);
+            line-height: 1.6;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* CONTENEDOR GENERAL */
+        .page {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 24px 16px 48px;
+        }
+
+        /* HEADER */
+        header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            margin-bottom: 32px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo-img {
+            width: 44px;
+            height: 44px;
+            border-radius: 999px;
+            object-fit: cover;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+        }
+
+        .logo-text-main {
+            font-weight: 700;
+            font-size: 20px;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        .logo-text-sub {
+            font-size: 12px;
+            color: #e9f4ef;
         }
 
         header {
+            background: rgba(5, 40, 28, 0.92);
+            padding: 14px 18px;
+            border-radius: 18px;
+            box-shadow: 0 14px 28px rgba(0, 0, 0, 0.22);
+        }
+
+        nav {
+            display: flex;
+            gap: 20px;
+            font-size: 14px;
+            color: #e9f4ef;
+        }
+
+        nav a {
+            padding: 6px 0;
+            position: relative;
+        }
+
+        nav a::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: -2px;
+            width: 0;
+            height: 2px;
+            background: var(--verde-claro);
+            transition: width 0.25s ease;
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        /* BOTONES */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 999px;
+            padding: 10px 22px;
+            font-size: 14px;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.2s ease;
+            white-space: nowrap;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #2f7f4f, #46a86a);
+            color: var(--blanco);
+            box-shadow: 0 12px 25px rgba(47, 127, 79, 0.45);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 18px 30px rgba(47, 127, 79, 0.55);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.1);
+            color: #e9f4ef;
+            border: 1px solid rgba(205, 231, 216, 0.6);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.18);
+        }
+
+        /* HERO */
+        .hero {
+            display: grid;
+            grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+            gap: 32px;
+            align-items: center;
+            margin: 28px 0 40px;
+        }
+
+        .hero-text h1 {
+            font-size: clamp(32px, 4vw, 40px);
+            line-height: 1.1;
+            color: #042219;
+            margin-bottom: 12px;
+        }
+
+        .hero-text h1 span {
+            color: var(--verde-oscuro);
+        }
+
+        .hero-text p {
+            font-size: 15px;
+            color: #143227;
+            max-width: 520px;
+            margin-bottom: 20px;
+        }
+
+        .hero-badges {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 18px;
+        }
+
+        .badge {
+            font-size: 11px;
+            padding: 5px 10px;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.85);
+            color: var(--verde-oscuro);
+        }
+
+        .hero-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .hero-note {
+            font-size: 12px;
+            color: #17352a;
+        }
+
+        .hero-stats {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-top: 14px;
+            font-size: 12px;
+        }
+
+        .hero-stats strong {
+            font-size: 16px;
+            display: block;
+            color: #042219;
+        }
+
+        /* HERO IMAGEN / TARJETA */
+        .hero-card {
+            background: rgba(8, 46, 33, 0.96);
+            box-shadow: var(--shadow-soft);
+            padding: 18px;
+            border-radius: var(--radius-xl);
+            color: #e8f4ef;
+        }
+
+        .hero-card-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 15px 40px;
-            background: #3f6240;
-            color: white;
+            margin-bottom: 14px;
         }
 
-        header img {
-            height: 60px;
+        .hero-card-title {
+            font-size: 14px;
+            font-weight: 600;
         }
 
-        .hero {
-            padding: 60px;
-            text-align: center;
-            background: #e8efe4;
+        .hero-card-tag {
+            font-size: 11px;
+            padding: 4px 8px;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.12);
         }
 
-        h1 {
-            font-size: 38px;
-            color: #2b3a31;
-        }
-
-        .productos {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 30px;
-            padding: 40px;
-        }
-
-        .card {
-            background: white;
-            border-radius: 12px;
-            padding: 20px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-        }
-
-        .card img {
+        .hero-main-image {
             width: 100%;
-            height: 240px;
+            border-radius: 18px;
+            overflow: hidden;
+            margin-bottom: 10px;
+        }
+
+        .hero-main-image img {
+            width: 100%;
+            display: block;
             object-fit: cover;
-            border-radius: 12px;
         }
 
-        .card h3 {
-            margin-top: 15px;
-            color: #2b3a31;
+        .hero-card-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 8px;
+            font-size: 11px;
         }
 
-        /* FORMULARIO */
-        .formulario {
-            background: #e8efe4;
-            padding: 40px;
-        }
-
-        .formulario h2 {
+        .mini-label {
+            padding: 6px 8px;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.08);
             text-align: center;
-            color: #2b3a31;
+        }
+
+        /* SECCIONES GENERALES */
+        .section {
+            margin-bottom: 40px;
+        }
+
+        .section-title {
+            font-size: 22px;
+            margin-bottom: 8px;
+            color: #042219;
+        }
+
+        .section-subtitle {
+            font-size: 13px;
+            color: #17352a;
+            margin-bottom: 18px;
+        }
+
+        /* GRID PRODUCTOS */
+        .productos-grid {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 16px;
+        }
+
+        .producto-card {
+            background: rgba(255, 255, 255, 0.96);
+            border-radius: 20px;
+            box-shadow: 0 12px 26px rgba(0, 0, 0, 0.12);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            font-size: 13px;
+        }
+
+        .producto-img-wrap {
+            width: 100%;
+            height: 150px;
+            overflow: hidden;
+        }
+
+        .producto-img-wrap img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.4s ease;
+        }
+
+        .producto-card:hover .producto-img-wrap img {
+            transform: scale(1.06);
+        }
+
+        .producto-body {
+            padding: 10px 12px 12px;
+        }
+
+        .producto-body h3 {
+            font-size: 14px;
+            margin-bottom: 4px;
+            color: var(--verde-oscuro);
+        }
+
+        .producto-chip {
+            display: inline-block;
+            margin-top: 4px;
+            font-size: 11px;
+            padding: 4px 8px;
+            border-radius: 999px;
+            background: var(--verde-claro);
+            color: #123024;
+        }
+
+        /* QUIÉNES SOMOS */
+        .about {
+            display: grid;
+            grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
+            gap: 20px;
+        }
+
+        .about-box {
+            background: rgba(255, 255, 255, 0.96);
+            border-radius: 20px;
+            padding: 18px;
+            box-shadow: 0 12px 26px rgba(0, 0, 0, 0.12);
+            font-size: 13px;
+        }
+
+        /* FORMULARIO PRE-PRESUPUESTO */
+        .form-section {
+            display: grid;
+            grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.9fr);
+            gap: 20px;
+            align-items: flex-start;
         }
 
         form {
-            max-width: 650px;
-            margin: auto;
-            background: white;
-            padding: 25px;
-            border-radius: 12px;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            background: rgba(255, 255, 255, 0.97);
+            border-radius: 20px;
+            padding: 18px;
+            box-shadow: 0 12px 28px rgba(0, 0, 0, 0.16);
+            font-size: 13px;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 12px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        label {
+            font-size: 12px;
+            color: #17352a;
         }
 
         input, select, textarea {
-            width: 100%;
-            margin: 10px 0;
-            padding: 12px;
-            border-radius: 8px;
-            border: 1px solid #ccc;
+            border-radius: 10px;
+            border: 1px solid #c3d3c8;
+            padding: 8px 10px;
+            font-size: 13px;
+            font-family: inherit;
         }
 
-        button {
-            background: #3f6240;
-            color: white;
-            padding: 12px 20px;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            font-size: 16px;
+        textarea {
+            min-height: 80px;
+            resize: vertical;
         }
 
+        .form-footer {
+            margin-top: 10px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .small-note {
+            font-size: 11px;
+            color: #52675c;
+        }
+
+        .checkbox-row {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 12px;
+        }
+
+        /* FOOTER */
         footer {
-            text-align: center;
-            padding: 20px;
-            background: #3f6240;
-            color: white;
             margin-top: 40px;
+            font-size: 11px;
+            color: #17352a;
+            text-align: center;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 1024px) {
+            .hero,
+            .form-section,
+            .about {
+                grid-template-columns: 1fr;
+            }
+
+            .productos-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+        }
+
+        @media (max-width: 720px) {
+            .page {
+                padding-inline: 12px;
+            }
+
+            header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            nav {
+                flex-wrap: wrap;
+            }
+
+            .productos-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
-
 </head>
 <body>
+    <div class="page">
+        <!-- HEADER -->
+        <header>
+            <div class="logo">
+                <img src="img/logo.png" alt="Logo Green Lab" class="logo-img">
+                <div>
+                    <div class="logo-text-main">Green Lab</div>
+                    <div class="logo-text-sub">Soluciones verdes para hogares y edificios</div>
+                </div>
+            </div>
 
-<header>
-    <img src="logo.png" alt="GreenLab Logo">
-    <h2>GreenLab - Soluciones de Vegetación</h2>
-</header>
+            <nav>
+                <a href="#productos">Soluciones</a>
+                <a href="#presupuesto">Pre-presupuesto</a>
+                <a href="#quienes-somos">Quiénes somos</a>
+                <a href="#contacto">Contacto</a>
+            </nav>
+        </header>
 
-<section class="hero">
-    <h1>Llevamos la naturaleza a tus espacios</h1>
-    <p>Soluciones verdes para balcones, fachadas, patios, jardines y terrazas.</p>
-</section>
+        <!-- HERO -->
+        <section class="hero">
+            <div class="hero-text">
+                <h1>
+                    Diseñamos <span>soluciones verdes</span> para patios, azoteas, terrazas y fachadas.
+                </h1>
+                <p>
+                    Green Lab transforma superficies duras en espacios vivos: huertas, jardines,
+                    azoteas accesibles, jardines verticales y murales verdes con sistemas de riego
+                    automático pensados para la ciudad.
+                </p>
 
-<section class="productos">
+                <div class="hero-badges">
+                    <div class="badge">Proyectos a medida</div>
+                    <div class="badge">Instalación y mantenimiento</div>
+                    <div class="badge">Enfoque en confort y biodiversidad</div>
+                </div>
 
-    <div class="card">
-        <img src="img1.jpg">
-        <h3>Fachadas Verdes Modulares</h3>
+                <div class="hero-actions">
+                    <button class="btn btn-primary" onclick="document.getElementById('presupuesto').scrollIntoView({behavior:'smooth'})">
+                        Quiero un pre-presupuesto
+                    </button>
+                    <button class="btn btn-secondary" onclick="document.getElementById('productos').scrollIntoView({behavior:'smooth'})">
+                        Ver diseños y soluciones
+                    </button>
+                </div>
+
+                <div class="hero-note">
+                    Trabajamos con viviendas individuales, edificios de apartamentos, comercios y terrazas de uso común.
+                </div>
+
+                <div class="hero-stats">
+                    <div>
+                        <strong>8</strong>
+                        líneas de producto claras para elegir la solución que mejor se adapta a tu espacio.
+                    </div>
+                    <div>
+                        <strong>+Confort</strong>
+                        sombra, frescura y mejora acústica gracias a superficies vegetales.
+                    </div>
+                    <div>
+                        <strong>+Ciudad verde</strong>
+                        más verde distribuido en balcones, patios, azoteas y fachadas.
+                    </div>
+                </div>
+            </div>
+
+            <aside class="hero-card" aria-label="Ejemplo de fachada verde modular">
+                <div class="hero-card-header">
+                    <div class="hero-card-title">Fachadas verdes modulares</div>
+                    <div class="hero-card-tag">Proyecto Green Lab</div>
+                </div>
+
+                <div class="hero-main-image">
+                    <img src="img/fachada-modular.jpg" alt="Fachada verde modular">
+                </div>
+
+                <div class="hero-card-grid">
+                    <div class="mini-label">Aislamiento térmico y visual</div>
+                    <div class="mini-label">Sistemas de riego integrados</div>
+                    <div class="mini-label">Módulos reemplazables</div>
+                    <div class="mini-label">Aplicable en medianeras y frentes</div>
+                </div>
+            </aside>
+        </section>
+
+        <!-- PRODUCTOS -->
+        <section id="productos" class="section">
+            <h2 class="section-title">Soluciones y diseños Green Lab</h2>
+            <p class="section-subtitle">
+                Cada producto corresponde a un tipo de intervención. La idea es que el visitante pueda
+                identificar rápido qué solución se adapta a su patio, terraza, azotea o fachada.
+            </p>
+
+            <div class="productos-grid">
+                <!-- 1 Patios y jardines con huertas -->
+                <article class="producto-card">
+                    <div class="producto-img-wrap">
+                        <img src="img/patio-huerta.jpg" alt="Patio y jardín con huerta">
+                    </div>
+                    <div class="producto-body">
+                        <h3>Patios y jardines con huertas</h3>
+                        <p>
+                            Diseño de patios y pequeños jardines que integran huerta urbana, caminos, 
+                            texturas y áreas de descanso.
+                        </p>
+                        <span class="producto-chip">Huerta + descanso</span>
+                    </div>
+                </article>
+
+                <!-- 2 Azoteas accesibles verdes -->
+                <article class="producto-card">
+                    <div class="producto-img-wrap">
+                        <img src="img/azotea-verde.jpg" alt="Azotea accesible verde">
+                    </div>
+                    <div class="producto-body">
+                        <h3>Azoteas accesibles verdes</h3>
+                        <p>
+                            Conversión de azoteas técnicas en superficies verdes accesibles, con césped,
+                            macizos y franjas de plantación.
+                        </p>
+                        <span class="producto-chip">Azoteas transitables</span>
+                    </div>
+                </article>
+
+                <!-- 3 Terrazas ajardinadas / diseño en terrazas -->
+                <article class="producto-card">
+                    <div class="producto-img-wrap">
+                        <img src="img/terraza-ajardinada.jpg" alt="Terraza ajardinada">
+                    </div>
+                    <div class="producto-body">
+                        <h3>Terrazas ajardinadas</h3>
+                        <p>
+                            Terrazas con vegetación, mobiliario y sectores de estar. Adaptamos el diseño 
+                            al uso que se le quiere dar al espacio.
+                        </p>
+                        <span class="producto-chip">Diseño en terrazas</span>
+                    </div>
+                </article>
+
+                <!-- 4 Sistema de riego automático -->
+                <article class="producto-card">
+                    <div class="producto-img-wrap">
+                        <img src="img/sistema-riego.jpg" alt="Sistema de riego automático">
+                    </div>
+                    <div class="producto-body">
+                        <h3>Sistema de riego automático (SRA)</h3>
+                        <p>
+                            Instalación de riego por goteo y automatización para balcones, jardines
+                            verticales, huertas y maceteros.
+                        </p>
+                        <span class="producto-chip">Menos mantenimiento</span>
+                    </div>
+                </article>
+
+                <!-- 5 Jardín vertical para balcones con SRA -->
+                <article class="producto-card">
+                    <div class="producto-img-wrap">
+                        <img src="img/balcon-vertical.jpg" alt="Jardín vertical en balcón">
+                    </div>
+                    <div class="producto-body">
+                        <h3>Jardín vertical para balcones</h3>
+                        <p>
+                            Sistemas livianos para balcones, integrando vegetación, estructura
+                            modular y riego automático según necesidad.
+                        </p>
+                        <span class="producto-chip">Balcones verdes</span>
+                    </div>
+                </article>
+
+                <!-- 6 Jardín vertical modular en fachadas -->
+                <article class="producto-card">
+                    <div class="producto-img-wrap">
+                        <img src="img/fachada-vertical.jpg" alt="Jardín vertical en fachada">
+                    </div>
+                    <div class="producto-body">
+                        <h3>Jardín vertical modular en fachadas</h3>
+                        <p>
+                            Módulos vegetales colocados sobre fachadas y medianeras, mejorando
+                            el desempeño térmico y la imagen urbana.
+                        </p>
+                        <span class="producto-chip">Fachadas verdes</span>
+                    </div>
+                </article>
+
+                <!-- 7 Murales verdes -->
+                <article class="producto-card">
+                    <div class="producto-img-wrap">
+                        <img src="img/mural-verde.jpg" alt="Mural verde">
+                    </div>
+                    <div class="producto-body">
+                        <h3>Murales verdes</h3>
+                        <p>
+                            Composiciones vegetales sobre planos verticales, interiores o exteriores,
+                            que funcionan como piezas artísticas vivas.
+                        </p>
+                        <span class="producto-chip">Murales vivos</span>
+                    </div>
+                </article>
+
+                <!-- 8 Extra: Fachadas modulares (ya en hero, pero repetimos como producto) -->
+                <article class="producto-card">
+                    <div class="producto-img-wrap">
+                        <img src="img/fachada-modular.jpg" alt="Fachada verde modular">
+                    </div>
+                    <div class="producto-body">
+                        <h3>Fachadas verdes modulares</h3>
+                        <p>
+                            Paneles modulares de vegetación para grandes superficies, compatibles
+                            con sistemas estructurales existentes.
+                        </p>
+                        <span class="producto-chip">Escala edificio</span>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <!-- QUIÉNES SOMOS -->
+        <section id="quienes-somos" class="section">
+            <h2 class="section-title">Quiénes somos</h2>
+            <div class="about">
+                <div class="about-box">
+                    <p>
+                        Green Lab es un equipo enfocado en llevar naturaleza a lugares donde casi no hay suelo
+                        disponible: balcones, terrazas, azoteas, patios internos y fachadas. Nuestra mirada
+                        combina arquitectura, paisaje y gestión del agua.
+                    </p>
+                    <p style="margin-top:8px;">
+                        Trabajamos desde un enfoque integral: diagnóstico del espacio, propuesta de diseño,
+                        definición de especies y sistemas constructivos, presupuesto, instalación y
+                        mantenimiento opcional. Cada proyecto se adapta al clima local, a la orientación del
+                        espacio y al tiempo de cuidado disponible.
+                    </p>
+                </div>
+
+                <div class="about-box">
+                    <h3 style="margin-bottom:6px; color:var(--verde-oscuro);">¿Qué hacemos?</h3>
+                    <ul style="font-size:13px; padding-left:16px;">
+                        <li>Diseño y representación de propuestas verdes para patios, terrazas y azoteas.</li>
+                        <li>Selección de especies, sustratos y sistemas de riego según cada caso.</li>
+                        <li>Coordinación de instalación y puesta en marcha.</li>
+                        <li>Plan de mantenimiento según el tiempo y presupuesto del cliente.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- PRE-PRESUPUESTO / CONTACTO -->
+        <section id="presupuesto" class="section">
+            <h2 class="section-title">Pre-presupuesto y contacto</h2>
+            <p class="section-subtitle">
+                Este formulario está pensado como esquema para la entrega: pide los datos básicos para
+                estimar un rango de inversión y definir una visita al lugar.
+            </p>
+
+            <div class="form-section">
+                <form>
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="nombre">Nombre y apellido</label>
+                            <input id="nombre" type="text" placeholder="Nombre de contacto">
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Correo electrónico</label>
+                            <input id="email" type="email" placeholder="nombre@correo.com">
+                        </div>
+                        <div class="form-group">
+                            <label for="telefono">Teléfono</label>
+                            <input id="telefono" type="tel" placeholder="+598 ...">
+                        </div>
+                        <div class="form-group">
+                            <label for="ubicacion">Ubicación</label>
+                            <input id="ubicacion" type="text" placeholder="Ciudad, barrio, piso / unidad">
+                        </div>
+                        <div class="form-group">
+                            <label for="tipo-producto">Tipo de producto</label>
+                            <select id="tipo-producto">
+                                <option value="">Elegir opción</option>
+                                <option>Patio / jardín con huerta</option>
+                                <option>Azotea accesible verde</option>
+                                <option>Terraza ajardinada</option>
+                                <option>Sistema de riego automático</option>
+                                <option>Jardín vertical en balcón</option>
+                                <option>Jardín vertical en fachada</option>
+                                <option>Fachada verde modular</option>
+                                <option>Mural verde</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="tipo-vivienda">Tipo de vivienda / edificio</label>
+                            <select id="tipo-vivienda">
+                                <option value="">Elegir opción</option>
+                                <option>Apartamento</option>
+                                <option>Casa</option>
+                                <option>Edificio de viviendas</option>
+                                <option>Local comercial / oficina</option>
+                                <option>Otro</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="presupuesto-rango">Rango de inversión estimado</label>
+                            <select id="presupuesto-rango">
+                                <option value="">A definir</option>
+                                <option>Hasta USD 1.000</option>
+                                <option>USD 1.000 – 3.000</option>
+                                <option>USD 3.000 – 7.000</option>
+                                <option>Más de USD 7.000</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="mantenimiento">Tipo de mantenimiento</label>
+                            <select id="mantenimiento">
+                                <option value="">Elegir opción</option>
+                                <option>Cliente se encarga</option>
+                                <option>Visitas periódicas de Green Lab</option>
+                                <option>Mixto / a convenir</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group" style="margin-top:10px;">
+                        <label for="detalles">Detalles del espacio</label>
+                        <textarea id="detalles" placeholder="Medidas aproximadas, orientación (norte/sur), horas de sol, si ya hay plantas, etc."></textarea>
+                    </div>
+
+                    <div class="form-footer">
+                        <div style="display:flex; flex-direction:column; gap:6px;">
+                            <div class="checkbox-row">
+                                <input id="visita" type="checkbox">
+                                <label for="visita">Quiero agendar una visita al lugar</label>
+                            </div>
+                            <span class="small-note">
+                                En una página real, al enviar el formulario se enviaría un correo a Green Lab con toda esta información.
+                            </span>
+                        </div>
+
+                        <button type="button" class="btn btn-primary">
+                            Enviar pre-presupuesto
+                        </button>
+                    </div>
+                </form>
+
+                <div id="contacto" class="about-box">
+                    <h3 style="margin-bottom:8px; color:var(--verde-oscuro);">Datos de contacto (ejemplo)</h3>
+                    <p style="font-size:13px;">
+                        Estos campos podés adaptarlos a los datos reales de tu entrega:
+                    </p>
+                    <ul style="font-size:13px; padding-left:16px; margin-top:6px;">
+                        <li><strong>Mail:</strong> contacto@greenlab.uy</li>
+                        <li><strong>Teléfono / WhatsApp:</strong> +598 000 000 000</li>
+                        <li><strong>Ciudad:</strong> Montevideo y área metropolitana</li>
+                    </ul>
+                    <p style="font-size:12px; margin-top:10px;">
+                        También se puede agregar un mapa, redes sociales o un código QR vinculado al portafolio de proyectos.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <footer>
+            Green Lab · Soluciones verdes para patios, terrazas, azoteas y fachadas · Página demostrativa para uso académico.
+        </footer>
     </div>
-
-    <div class="card">
-        <img src="img2.webp">
-        <h3>Patios y Jardines con Huertas</h3>
-    </div>
-
-    <div class="card">
-        <img src="img3.jpg">
-        <h3>Azoteas Accesibles Verdes</h3>
-    </div>
-
-    <div class="card">
-        <img src="img4.jpg">
-        <h3>Terrazas Ajardinadas</h3>
-    </div>
-
-    <div class="card">
-        <img src="img5.webp">
-        <h3>Sistema de Riego Automático</h3>
-    </div>
-
-    <div class="card">
-        <img src="img6.jpg">
-        <h3>Jardín Vertical para Balcones</h3>
-    </div>
-
-    <div class="card">
-        <img src="img7.jpg">
-        <h3>Jardín en Fachada</h3>
-    </div>
-
-    <div class="card">
-        <img src="img8.png">
-        <h3>Murales Verdes</h3>
-    </div>
-
-</section>
-
-<section class="formulario">
-    <h2>Solicitar Pre-Presupuesto</h2>
-
-    <form>
-        <input type="text" placeholder="Nombre">
-        <input type="text" placeholder="Ubicación">
-        
-        <select>
-            <option>Tipo de producto</option>
-            <option>Fachada Verde</option>
-            <option>Huerta</option>
-            <option>Azotea Verde</option>
-            <option>Terraza Ajardinada</option>
-            <option>Riego Automático</option>
-            <option>Jardín en Balcón</option>
-            <option>Mural Verde</option>
-        </select>
-
-        <select>
-            <option>Tipo de vivienda</option>
-            <option>Apartamento</option>
-            <option>Casa</option>
-            <option>Comercio</option>
-            <option>Edificio</option>
-        </select>
-
-        <textarea placeholder="Detalles del proyecto"></textarea>
-
-        <button>Enviar Solicitud</button>
-    </form>
-</section>
-
-<footer>
-    © 2025 GreenLab - Diseño e instalación de soluciones verdes
-</footer>
+</body>
+</html>
 
 </body>
 </html>
