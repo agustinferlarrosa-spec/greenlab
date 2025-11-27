@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GreenLab - Soluciones Verdes</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            background: #ccd5ca; /* Fondo más oscuro */
+            color: #2b3a31;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 40px;
+            background: #3f6240;
+            color: white;
+        }
+
+        header img {
+            height: 60px;
+        }
+
+        .hero {
+            padding: 60px;
+            text-align: center;
+            background: #e8efe4;
+        }
+
+        h1 {
+            font-size: 38px;
+            color: #2b3a31;
+        }
+
+        .productos {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+            padding: 40px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        .card img {
+            width: 100%;
+            height: 240px;
+            object-fit: cover;
+            border-radius: 12px;
+        }
+
+        .card h3 {
+            margin-top: 15px;
+            color: #2b3a31;
+        }
+
+        /* FORMULARIO */
+        .formulario {
+            background: #e8efe4;
+            padding: 40px;
+        }
+
+        .formulario h2 {
+            text-align: center;
+            color: #2b3a31;
+        }
+
+        form {
+            max-width: 650px;
+            margin: auto;
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+
+        input, select, textarea {
+            width: 100%;
+            margin: 10px 0;
+            padding: 12px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+        }
+
+        button {
+            background: #3f6240;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            background: #3f6240;
+            color: white;
+            margin-top: 40px;
+        }
+    </style>
+
+</head>
+<body>
+
+<header>
+    <img src="logo.png" alt="GreenLab Logo">
+    <h2>GreenLab - Soluciones de Vegetación</h2>
+</header>
+
+<section class="hero">
+    <h1>Llevamos la naturaleza a tus espacios</h1>
+    <p>Soluciones verdes para balcones, fachadas, patios, jardines y terrazas.</p>
+</section>
+
+<section class="productos">
+
+    <div class="card">
+        <img src="img1.jpg">
+        <h3>Fachadas Verdes Modulares</h3>
+    </div>
+
+    <div class="card">
+        <img src="img2.webp">
+        <h3>Patios y Jardines con Huertas</h3>
+    </div>
+
+    <div class="card">
+        <img src="img3.jpg">
+        <h3>Azoteas Accesibles Verdes</h3>
+    </div>
+
+    <div class="card">
+        <img src="img4.jpg">
+        <h3>Terrazas Ajardinadas</h3>
+    </div>
+
+    <div class="card">
+        <img src="img5.webp">
+        <h3>Sistema de Riego Automático</h3>
+    </div>
+
+    <div class="card">
+        <img src="img6.jpg">
+        <h3>Jardín Vertical para Balcones</h3>
+    </div>
+
+    <div class="card">
+        <img src="img7.jpg">
+        <h3>Jardín en Fachada</h3>
+    </div>
+
+    <div class="card">
+        <img src="img8.png">
+        <h3>Murales Verdes</h3>
+    </div>
+
+</section>
+
+<section class="formulario">
+    <h2>Solicitar Pre-Presupuesto</h2>
+
+    <form>
+        <input type="text" placeholder="Nombre">
+        <input type="text" placeholder="Ubicación">
+        
+        <select>
+            <option>Tipo de producto</option>
+            <option>Fachada Verde</option>
+            <option>Huerta</option>
+            <option>Azotea Verde</option>
+            <option>Terraza Ajardinada</option>
+            <option>Riego Automático</option>
+            <option>Jardín en Balcón</option>
+            <option>Mural Verde</option>
+        </select>
+
+        <select>
+            <option>Tipo de vivienda</option>
+            <option>Apartamento</option>
+            <option>Casa</option>
+            <option>Comercio</option>
+            <option>Edificio</option>
+        </select>
+
+        <textarea placeholder="Detalles del proyecto"></textarea>
+
+        <button>Enviar Solicitud</button>
+    </form>
+</section>
+
+<footer>
+    © 2025 GreenLab - Diseño e instalación de soluciones verdes
+</footer>
+
+</body>
+</html>
